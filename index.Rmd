@@ -1,0 +1,74 @@
+---
+title: "Incarceration Data Exploration"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lintr)
+library(styler)
+library(tidyverse)
+library(reshape2)
+library(maps)
+library(mapproj)
+library(patchwork)
+library(knitr)
+source("Analysis.R")
+
+```
+
+![](https://wgbh.brightspotcdn.com/dims4/default/63e5b1d/2147483647/strip/true/crop/4830x2635+0+531/resize/990x540!/quality/70/?url=https%3A%2F%2Fwgbh.brightspotcdn.com%2Ff3%2F50%2Fb958c10e44c3976aeafa048d907f%2Fjail-658121355.jpg)
+
+### Introduction
+Data exploration on incarceration in the state of Oregon. Specifically, the incarcerated population who are on ICE hold and races represented by the incarcerated population over time across counties in Oregon. Data set was created by [Vera Institute](https://github.com/vera-institute/incarceration-trends). The following variables from the data set is the primary focus of the exploration:
+
+1. *total_jail_from_ice*: size of incarcerated population on ICE hold
+2. *black_jail_pop_rate*: incarceration rate of black population 
+3. *white_jail_pop_rate*: incarceration rate of white population
+4. *black/aapi/latinx/white/native/other_race_jail_pop*: incarcerated popultion of
+a certain race
+5. *black_prison_adm*: count of black individuals admitted to prison
+6. *white_pop_15to64*: total white population between age of 15 to 64 
+
+##### Why these variables?
+These variables provide necessary information required to understand the total incarcerated population on ICE hold in Oregon and race distribution within the incarcerated population in Oregon over time.
+
+### Data Summary
+
+The following results are generated based on data analysis and all null values were ignored during the process:
+
+1. There were a total of `r or_total_recent` people in jail. 
+2. Within the incarcerated population, there were `r or_ice_total` on ICE hold
+3. The average ICE hold rate in Oregon over time was  `r or_ice_avg`%. 
+4. The average percentage difference between black and white incarceration rate in 2018 in Oregon was `r avg_diff`%.
+5. Instead of a calculated value, the following table demonstrates the total number of incarcerated population of each race in Oregon each year:
+
+```{r, echo = F, message = F}
+kable(or_race_over_year)
+```
+
+
+
+### Trend over time chart
+
+```{r, echo = F, message = F}
+p
+```
+
+
+### Correlation between two varibles: White population between 15 to 64 v. Black jail admission count
+*note: Although there appear to be a positive correlation between these two* variables, we don't have enough data and make such a conclusion. 
+
+
+```{r, echo = F, message = F}
+v
+```
+
+
+### Map: Incarcerated black population distribution in Oregon
+
+```{r, echo = F, message = F}
+m
+```
+
