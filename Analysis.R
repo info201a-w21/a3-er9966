@@ -31,7 +31,7 @@ ICE_each_county <- df %>%
   filter(year == max(year)) %>% 
   filter(state == "OR") %>% 
   select(state, county_name, total_jail_from_ice)
-or_ice_total = sum(ICE_each_county$total_jail_from_ice, na.rm = T)
+or_ice_total <- sum(ICE_each_county$total_jail_from_ice, na.rm = T)
 
 # Difference between percentage of incarcerated black population vs white population in
 # each county in Oregon according to the most recent data?
@@ -40,8 +40,8 @@ or_diff_percentage <- na.omit(df) %>%
   filter(state == "OR") %>% 
   mutate(diff_percentage = (black_jail_pop_rate - white_jail_pop_rate)*0.01) %>% 
   select(state, county_name, diff_percentage)
-avg_diff = mean(or_diff_percentage$diff_percentage)
-median_diff = median(or_diff_percentage$diff_percentage)
+avg_diff <- mean(or_diff_percentage$diff_percentage)
+median_diff <- median(or_diff_percentage$diff_percentage)
 
 # Total number of incarcerated population of each race in Oregon each year
 or_race_over_year <- na.omit(df) %>% 
@@ -69,8 +69,8 @@ or_ice_avg <- mean(or_ICE_percentage$percentage_ICE)
 # A line graph that documents the change in number of incarcerated population 
 # of each race
 
-mdf <- melt(or_race_over_year, id="year")
-p <- ggplot(data=mdf, aes(x=year, y=value, colour=variable)) +
+mdf <- melt(or_race_over_year, id = "year")
+p <- ggplot(data = mdf, aes(x = year, y = value, colour = variable)) +
   geom_line() +
   labs(x = "year", 
        y = "Population in Jail",
