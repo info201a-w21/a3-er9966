@@ -41,6 +41,7 @@ or_diff_percentage <- na.omit(df) %>%
   mutate(diff_percentage = (black_jail_pop_rate - white_jail_pop_rate)*0.01) %>% 
   select(state, county_name, diff_percentage)
 avg_diff = mean(or_diff_percentage$diff_percentage)
+median_diff = median(or_diff_percentage$diff_percentage)
 
 # Total number of incarcerated population of each race in Oregon each year
 or_race_over_year <- na.omit(df) %>% 
@@ -52,6 +53,9 @@ or_race_over_year <- na.omit(df) %>%
             white_pop = sum(white_jail_pop),
             native_pop = sum(native_jail_pop),
             other_race_pop = sum(other_race_jail_pop))
+or_current_black_pop <- or_race_over_year %>% 
+  filter(year == max(year)) %>% 
+  pull(black_pop)
 
 # Percentage of incarcerated population that were on ICE hold in Oregon over time?
 or_ICE_percentage <- df %>% 
@@ -131,7 +135,7 @@ m <- ggplot(or_joined_df) +
   scale_fill_continuous(limits = c(0, max(or_joined_df$black_jail_pop)),
                         na.value = "white", low = "peachpuff", high = "red") +
   blank_theme +
-  ggtitle("Black Jail Population in Oregon Counties") 
+  ggtitle("Incarcerated Black Population in Oregon Counties") 
   
   
 

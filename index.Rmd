@@ -42,15 +42,14 @@ The following results are generated based on data analysis and all null values w
 2. Within the incarcerated population, there were `r or_ice_total` on ICE hold
 3. The average ICE hold rate in Oregon over time was  `r or_ice_avg`%. 
 4. The average percentage difference between black and white incarceration rate in 2018 in Oregon was `r avg_diff`%.
-5. Instead of a calculated value, the following table demonstrates the total number of incarcerated population of each race in Oregon each year:
-
-```{r, echo = F, message = F}
-kable(or_race_over_year)
-```
+5. There were `r or_current_black_pop` black individuals in jail in Oregon according to the most recent date in the data set.
 
 
 
 ### Trend over time chart
+
+This chart is designed this way so that readers could easily identify the change in number of incarcerated population across all races. The x-asix documents time and the y-axis shows number of incarcerated individuals. Interestingly, the rate of change in number of incarcerated population in Oregon appears to be similar with shared peaks in 2005, 2007, and 2009 across the races represented. 
+
 
 ```{r, echo = F, message = F}
 p
@@ -58,7 +57,8 @@ p
 
 
 ### Correlation between two varibles: White population between 15 to 64 v. Black jail admission count
-*note: Although there appear to be a positive correlation between these two* variables, we don't have enough data and make such a conclusion. 
+
+The chart is designed to further explore whether or not an increasing number of white population is correlated to a higher number of black individuals being admitted in jail. A scatterplot is chosen to better demonstrate correlation. *Although there appears to be a positive correlation between white population and black individual jail admission count, we don't have enough data to make such a conclusion.*
 
 
 ```{r, echo = F, message = F}
@@ -67,6 +67,9 @@ v
 
 
 ### Map: Incarcerated black population distribution in Oregon
+
+The map is designed to show the count of incarcerated black individual in each county in Oregon. Red is chosen to represents high population and white means no available data. This graph shows that most of black incarcerated population are located in Multnomah County (where Portland is located).
+
 
 ```{r, echo = F, message = F}
 m
